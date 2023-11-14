@@ -202,8 +202,19 @@ function roundToPowerOfTen(num, pow) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  if (n === 1) {
+    return false;
+  }
+  if (n === 2) {
+    return true;
+  }
+  for (let i = 2; i < n; i += 1) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -253,8 +264,10 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  return index <= 1
+    ? index
+    : getFibonacciNumber(index - 1) + getFibonacciNumber(index - 2);
 }
 
 /**
@@ -268,8 +281,12 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  let sum = 0;
+  for (let i = 1; i < n; i += 1) {
+    sum += i;
+  }
+  return sum + n;
 }
 
 /**
@@ -283,8 +300,13 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  const newArr = num.toString().split('');
+  let result = 0;
+  for (let i = 0; i < newArr.length; i += 1) {
+    result += Number(newArr[i]);
+  }
+  return result;
 }
 
 /**
@@ -298,8 +320,13 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  let number = num;
+  while (number % 2 === 0) {
+    number /= 2;
+  }
+  if (number === 1) return true;
+  return false;
 }
 
 /**
@@ -456,8 +483,12 @@ function getFloatOnString(str) {
  * '1.234', 2           => 1
  * '10', 8              => 8
  */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+function getIntegerOnString(str, base) {
+  const parsed = Number.parseInt(str, base);
+  if (Number.isNaN(parsed)) {
+    return NaN;
+  }
+  return parsed;
 }
 
 /**
@@ -609,8 +640,10 @@ function getHypotenuse(a, b) {
  * 10 => 5
  * 15 => 8
  */
-function getCountOfOddNumbers(/* number */) {
-  throw new Error('Not implemented');
+function getCountOfOddNumbers(number) {
+  const module = Math.abs(number);
+  if (module % 2 === 0) return module / 2;
+  return Math.round(module / 2);
 }
 
 module.exports = {
